@@ -1,17 +1,30 @@
 # encoding: utf-8
-require "logstash/outputs/base"
-require "logstash/namespace"
+# frozen_string_literal: true
 
-# An dynamodb output that does nothing.
-class LogStash::Outputs::Dynamodb < LogStash::Outputs::Base
-  config_name "dynamodb"
+require 'logstash/outputs/base'
+require 'logstash/namespace'
+require 'aws-sdk-dynamodb'
 
-  public
-  def register
-  end # def register
+module LogStash
+  module Outputs
+    class Dynamodb < LogStash::Outputs::Base
+      config_name 'dynamodb'
 
-  public
-  def receive(event)
-    return "Event received"
-  end # def event
-end # class LogStash::Outputs::Dynamodb
+      config :region,                validate: :string, default: 'us-east-1'
+      config :aws_access_key_id,     validate: :string
+      config :aws_secret_access_key, validate: :string
+      config :table_name,            validate: :string, required: true
+      config :table_attributes,      validate: :array,  required: false
+
+      public
+
+      def register; end
+
+      public
+
+      def receive(_event)
+        'Event received'
+      end
+    end
+  end
+end

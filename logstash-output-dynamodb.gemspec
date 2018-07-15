@@ -1,24 +1,24 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |s|
   s.name          = 'logstash-output-dynamodb'
   s.version       = '0.1.0'
   s.licenses      = ['Apache-2.0']
-  s.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
-  s.description   = 'TODO: Write a longer description or delete this line.'
-  s.homepage      = 'TODO: Put your plugin''s website or public repo URL here.'
+  s.summary       = 'Logstash output plugin for DynamoDB'
+  s.description   = 'Logstash output plugin for AWS DynamoDB'
+  s.homepage      = 'https://github.com/jasonpilz/logstash-output-dynamodb'
   s.authors       = ['Jason Pilz']
   s.email         = 'jasonpilz@gmail.com'
   s.require_paths = ['lib']
 
-  # Files
-  s.files = Dir['lib/**/*','spec/**/*','vendor/**/*','*.gemspec','*.md','CONTRIBUTORS','Gemfile','LICENSE','NOTICE.TXT']
-   # Tests
+  s.files = Dir[*%w[lib/**/* spec/**/* vendor/**/* *.gemspec *.md CONTRIBUTORS Gemfile LICENSE NOTICE.TXT]]
   s.test_files = s.files.grep(%r{^(test|spec|features)/})
+  s.metadata = { 'logstash_plugin' => 'true', 'logstash_group' => 'output' }
 
-  # Special flag to let us know this is actually a logstash plugin
-  s.metadata = { "logstash_plugin" => "true", "logstash_group" => "output" }
+  s.add_runtime_dependency 'aws-sdk-dynamodb', '~> 1.0'
+  s.add_runtime_dependency 'logstash-codec-plain'
+  s.add_runtime_dependency 'logstash-core-plugin-api', '~> 2.0'
 
-  # Gem dependencies
-  s.add_runtime_dependency "logstash-core-plugin-api", "~> 2.0"
-  s.add_runtime_dependency "logstash-codec-plain"
-  s.add_development_dependency "logstash-devutils"
+  s.add_development_dependency 'logstash-devutils'
+  s.add_development_dependency 'rubocop'
 end
