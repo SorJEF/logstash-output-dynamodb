@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 set -euo
-IFS=$'\n\t'
 
+IFS=$'\n\t'
+yel=$'\e[0;33m'
+cyn=$'\e[0;36m'
+end=$'\e[0m'
+
+print_warn() {
+  printf "%s\\nWARNING: %s$1\\n" "$yel" "$end"
+}
+
+print_header() {
+  printf "%s\\n===> %s \\n\\n%s" "$cyn" "$1" "$end"
+}
+
+if [[ ! -f .env ]]
+then
+  cp .env_sample .env
+
+  print_warn "Created starter .env file. Please verify variables"
+fi
+
+print_header "Docker image"
 docker-compose build --force-rm --pull app
+
+print_header "Done!"

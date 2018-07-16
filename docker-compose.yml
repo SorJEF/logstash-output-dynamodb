@@ -4,5 +4,6 @@ services:
   app:
     build: '.'
     image: 'logstash-output-dynamodb'
+    env_file: '.env'
     volumes:
       - '.:/var/app'
