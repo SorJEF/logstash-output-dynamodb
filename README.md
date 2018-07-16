@@ -1,5 +1,7 @@
 # Logstash DynamoDB Output Plugin
 
+[![Build Status](https://travis-ci.org/jasonpilz/logstash-output-dynamodb.svg?branch=master)](https://travis-ci.org/jasonpilz/logstash-output-dynamodb)
+
 [Logstash]: https://github.com/elastic/logstash
 [central location]: http://www.elastic.co/guide/en/logstash/current/
 [logstash-plugins]: https://github.com/logstash-plugins
