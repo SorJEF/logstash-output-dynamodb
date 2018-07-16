@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+rspec \
+    --order random \
+    --color \
+    --format RspecJunitFormatter \
+    --out spec/reports/rspec.xml \
+
+rubocop \
+    -r rubocop/formatter/junit_formatter \
+    --format RuboCop::Formatter::JUnitFormatter \
+    --out spec/reports/rubocop.xml

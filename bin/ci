@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo
+IFS=$'\n\t'
+
+docker-compose build --force-rm --pull app
