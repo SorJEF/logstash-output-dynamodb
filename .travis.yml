@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - bin/ci
+
+script:
+  - docker-compose run --rm app rspec
