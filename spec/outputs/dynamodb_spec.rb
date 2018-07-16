@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-require 'logstash/devutils/rspec/spec_helper'
 require 'logstash/outputs/dynamodb'
-require 'logstash/codecs/plain'
-require 'logstash/event'
 
-describe LogStash::Outputs::Dynamodb do
+RSpec.describe LogStash::Outputs::Dynamodb do
+  let(:config_options) do
+    {
+      'table_name' => 'testTable'
+    }
+  end
+
   let(:sample_event) { LogStash::Event.new }
-  let(:output) { LogStash::Outputs::Dynamodb.new }
+  let(:output) { LogStash::Outputs::Dynamodb.new(config_options) }
 
   before do
     output.register
