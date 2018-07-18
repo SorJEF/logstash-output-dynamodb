@@ -1,3 +1,4 @@
+*.gem
 Gemfile.lock
 .env
 /spec/reports/

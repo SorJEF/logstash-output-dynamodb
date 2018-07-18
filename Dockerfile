@@ -1,3 +1,4 @@
+# FROM jruby:1.7.27
 FROM jruby:9
 
 MAINTAINER Jason Pilz "jasonpilz@gmail.com"

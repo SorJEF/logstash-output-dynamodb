@@ -3,7 +3,7 @@
 
 require 'logstash/outputs/base'
 require 'logstash/namespace'
-require 'aws-sdk-dynamodb'
+require 'aws-sdk'
 
 module LogStash
   module Outputs
@@ -23,6 +23,8 @@ module LogStash
       public
 
       def receive(_event)
+        Aws::DynamoDB::Client.new(region: 'us-east-1')
+
         'Event received'
       end
     end

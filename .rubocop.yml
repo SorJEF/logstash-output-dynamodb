@@ -10,6 +10,9 @@ Documentation:
 Lint/UnneededSplatExpansion:
   Enabled: false
 
+Lint/UselessAccessModifier:
+  Enabled: false
+
 Metrics/BlockLength:
   Max: 500
 
