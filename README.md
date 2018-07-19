@@ -15,6 +15,28 @@ This is a plugin for [Logstash].
 It is fully free and fully open source. The license is Apache 2.0, meaning you
 are pretty much free to use it however you want in whatever way.
 
+## Overview
+
+## Configuration
+
+Example [logstash config](https://www.elastic.co/guide/en/logstash/current/configuration.html)
+
+```sh
+output {
+  dynamodb {
+    aws_access_key_id     => "${AWS_ACCESS_KEY_ID}",    # Optional
+    aws_secret_access_key => "${AWS_SECRET_ACCESS_KEY}" # Optional
+    region                => "us-east-1"                # Optional, default = "us-east-1"
+    table_name            => "Music"                    # Required
+    create_table          => true                       # Optional, default = false
+    primary_key           => "Artist"                   # Optional, used if `create_table => true`
+    sort_key              => "SongTitle"                # Optional, used if `create_table => true`
+    read_capacity_units   => 10                         # Optional, default = 5, used if `create_table => true`
+    write_capacity_units  => 10                         # Optional, default = 5, used if `create_table => true`
+  }
+}
+```
+
 ## Documentation
 
 Logstash provides infrastructure to automatically generate documentation for this

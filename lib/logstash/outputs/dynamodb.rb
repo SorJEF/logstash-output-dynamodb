@@ -10,21 +10,28 @@ module LogStash
     class Dynamodb < LogStash::Outputs::Base
       config_name 'dynamodb'
 
-      config :region,                validate: :string, default: 'us-east-1'
-      config :aws_access_key_id,     validate: :string
-      config :aws_secret_access_key, validate: :string
+      config :aws_access_key_id,     validate: :string, required: true
+      config :aws_secret_access_key, validate: :string, required: true
       config :table_name,            validate: :string, required: true
-      config :table_attributes,      validate: :array,  required: false
+      config :create_table,          validate: :boolean, default: false
+      config :region,                validate: :string, default: 'us-east-1'
+      config :primary_key,           required: false
+      config :sort_key,              required: false
+      config :read_capacity_units,   validate: :number, default: 5
+      config :write_capacity_units,  validate: :number, default: 5
 
       public
 
-      def register; end
+      def register
+        Aws.config[:credentials] = Aws::Credentials.new(@aws_access_key_id, @aws_secret_access_key)
+        Aws.config[:region] = @region
+
+        @dynamodb_client = Aws::DynamoDB::Client.new
+      end
 
       public
 
       def receive(_event)
-        Aws::DynamoDB::Client.new(region: 'us-east-1')
-
         'Event received'
       end
     end

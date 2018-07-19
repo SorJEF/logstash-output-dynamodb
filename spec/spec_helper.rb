@@ -11,4 +11,8 @@ require 'simplecov'
 
 WebMock.disable_net_connect!(allow: %w[localhost 127.0.0.1])
 
-require_relative 'support/simplecov'
+require_relative 'support'
+
+RSpec.configure do |config|
+  config.include(SpecHelpers::Env)
+end
