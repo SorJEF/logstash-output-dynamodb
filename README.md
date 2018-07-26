@@ -1,10 +1,11 @@
-# Logstash DynamoDB Output Plugin
+# Logstash DynamoDB output plugin
 
 [![Build Status](https://travis-ci.org/jasonpilz/logstash-output-dynamodb.svg?branch=master)](https://travis-ci.org/jasonpilz/logstash-output-dynamodb)
 
 [Logstash]: https://github.com/elastic/logstash
 [central location]: http://www.elastic.co/guide/en/logstash/current/
 [logstash-plugins]: https://github.com/logstash-plugins
+[logstash config]: https://www.elastic.co/guide/en/logstash/current/configuration.html
 [example plugins]: https://github.com/logstash-plugins?query=example
 [discussion forum]: https://discuss.elastic.co/c/logstash
 [asciidoc reference]: https://github.com/elastic/docs#asciidoc-guide
@@ -12,14 +13,13 @@
 
 This is a plugin for [Logstash].
 
-It is fully free and fully open source. The license is Apache 2.0, meaning you
-are pretty much free to use it however you want in whatever way.
-
 ## Overview
+
+Plugin currently WIP
 
 ## Configuration
 
-Example [logstash config](https://www.elastic.co/guide/en/logstash/current/configuration.html)
+Example [logstash config]
 
 ```sh
 output {
@@ -132,3 +132,8 @@ that here.
 It is more important to the community that you are able to contribute.
 
 For more information about contributing, see the [CONTRIBUTING] file.
+
+## License
+
+It is fully free and fully open source. The license is Apache 2.0, meaning you
+are pretty much free to use it however you want in whatever way.
