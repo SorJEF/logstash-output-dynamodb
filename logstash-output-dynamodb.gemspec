@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.licenses      = ['Apache-2.0']
   s.summary       = 'Logstash output plugin for DynamoDB'
   s.description   = 'Logstash output plugin for AWS DynamoDB'
-  s.homepage      = 'https://github.com/jasonpilz/logstash-output-dynamodb'
-  s.authors       = ['Jason Pilz']
-  s.email         = 'jasonpilz@gmail.com'
+  s.homepage      = 'https://github.com/sorjef/logstash-output-dynamodb'
+  s.authors       = ['Jason Pilz', 'Artem Sorokin']
+  s.email         = 'sorokinjef@gmail.com'
   s.require_paths = ['lib']
 
   s.files = Dir[*%w[lib/**/* spec/**/* vendor/**/* *.gemspec *.md CONTRIBUTORS Gemfile LICENSE NOTICE.TXT]]

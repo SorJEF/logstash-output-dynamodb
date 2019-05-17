@@ -13,12 +13,7 @@ module LogStash
       config :aws_access_key_id,     validate: :string, required: true
       config :aws_secret_access_key, validate: :string, required: true
       config :table_name,            validate: :string, required: true
-      config :create_table,          validate: :boolean, default: false
       config :region,                validate: :string, default: 'us-east-1'
-      config :primary_key,           required: false
-      config :sort_key,              required: false
-      config :read_capacity_units,   validate: :number, default: 5
-      config :write_capacity_units,  validate: :number, default: 5
 
       public
 
@@ -26,13 +21,13 @@ module LogStash
         Aws.config[:credentials] = Aws::Credentials.new(@aws_access_key_id, @aws_secret_access_key)
         Aws.config[:region] = @region
 
-        @dynamodb_client = Aws::DynamoDB::Client.new
+        @dynamodb = Aws::DynamoDB::Client.new
       end
 
       public
 
       def receive(_event)
-        'Event received'
+        @dynamodb.put_item(:table_name => @table_name, :item => _event.to_hash)
       end
     end
   end
