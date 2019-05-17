@@ -12,8 +12,9 @@ module LogStash
 
       config :aws_access_key_id,     validate: :string, required: true
       config :aws_secret_access_key, validate: :string, required: true
-      config :table_name,            validate: :string, required: true
       config :region,                validate: :string, default: 'us-east-1'
+      config :table_name,            validate: :string, required: true
+      config :fields,                validate: :array,  required: true
 
       public
 
@@ -27,7 +28,15 @@ module LogStash
       public
 
       def receive(_event)
-        @dynamodb.put_item(:table_name => @table_name, :item => _event.to_hash)
+        message = Hash.new
+
+        @fields.each do |x|
+          if _event.get(x)
+            message[x] = _event.get(x)
+          end
+        end
+
+        @dynamodb.put_item(:table_name => @table_name, :item => message)
       end
     end
   end
